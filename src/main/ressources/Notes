@@ -1,0 +1,7 @@
+Es gibt "Items"(Waren) (+)
+Waren haben einen Preis (+)
+Es gibt Regeln(-)
+Es gibt eine Kasse (-)
+Die Kasse hat Regeln (-)
+Die Kasse kann Waren scannen(-)
+Der Preis mehrerer Waren kann von der Kasse addiert werden (-)
