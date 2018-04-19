@@ -1,14 +1,29 @@
 package main.java.model;
 
+import main.java.model.enumeration.ITEM;
+
 public class Item {
 
-    private int price;
+    private ITEM item;
+    private Rule rule;
 
-    public void setPrice(int price) {
-        this.price = price;
+    public Item(ITEM item) {
+        this.item = item;
     }
 
     public int getPrice() {
-        return price;
+        return item.getPrice();
+    }
+
+    public String getName() {
+        return item.toString();
+    }
+
+    public void setRule(Rule rule) {
+        this.rule = rule;
+    }
+
+    public Rule getRule() {
+        return rule;
     }
 }
