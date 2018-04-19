@@ -34,17 +34,29 @@ public class CheckoutServiceTest {
 
     @Test
     public void sumPricesTest() {
-        assertEquals(130, service.sumPrices(new Item(ITEM.A), new Item(ITEM.A), new Item(ITEM.B)));
+        Item itemA = new Item(ITEM.A);
+        Item itemB = new Item(ITEM.B);
+        itemA.setRule(new Rule(3,130));
+        itemB.setRule(new Rule(2, 45));
+        assertEquals(130, service.sumPrices(itemA,itemA,itemB));
     }
 
-//    @Test
-//    public void sumPricesWithRulesTest() {
-//        Item itemA = new Item(ITEM.A);
-//        Item itemB = new Item(ITEM.B);
-//        itemA.setRule(new Rule(3, 130));
-//        itemB.setRule(new Rule(2, 45));
-//        assertEquals(145, service.sumPrices(itemA, itemA, itemB, itemB));
-//    }
+    @Test
+    public void sumPricesWithAndWithoutRuleTest() {
+        Item itemA = new Item(ITEM.A);
+        Item itemB = new Item(ITEM.B);
+        itemA.setRule(new Rule(3,130));
+        assertEquals(130, service.sumPrices(itemA,itemA,itemB));
+    }
+
+    @Test
+    public void sumPricesWithRulesTest() {
+        Item itemA = new Item(ITEM.A);
+        Item itemB = new Item(ITEM.B);
+        itemA.setRule(new Rule(3, 130));
+        itemB.setRule(new Rule(2, 45));
+        assertEquals(145, service.sumPrices(itemA, itemA, itemB, itemB));
+    }
 
     @Test
     public void countItemsTest() {
@@ -80,6 +92,15 @@ public class CheckoutServiceTest {
         assertTrue(testCounter.containsKey(ITEM.B.toString()));
         assertEquals(2, testCounter.get(ITEM.A.toString()).intValue());
         assertEquals(2, testCounter.size());
+    }
+
+    @Test
+    public void getNormalPriceTest(){
+        Item item = new Item(ITEM.B);
+        item.setRule(new Rule(2, 45));
+        assertEquals(30, service.getNormalPrice(item, item, item));
+        assertEquals(0, service.getNormalPrice(item, item, item, item));
+        assertEquals(30, service.getNormalPrice(item, item, item, item, item, item, item));
     }
 
     @Test

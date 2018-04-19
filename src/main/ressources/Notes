@@ -11,7 +11,7 @@ Die Kasse kann Waren erkennen und dadurch deren Preis ausgeben(+)
 Die Kasse kann den Warentyp und die aktuelle Anzahl von dieser Ware speichern.(+)
 Der Preis mehrerer Waren kann von der Kasse addiert werden (+)
 Die Regeln der Kasse greifen, wenn die jeweilige Menge einer Waren erreicht wurde(+)
-Die Kasse muss die Preise unter Berücksichtigung der Regeln zusammenrechnen(-)
+Die Kasse muss die Preise unter Berücksichtigung der Regeln zusammenrechnen(+)
 
 Die Waren müssen als zusammenhängender String "AABADABC" übergeben werden können.(-)
 Die Regel muss als Text ausgegeben werden können(+)

@@ -2,7 +2,9 @@ package main.java.service;
 
 import main.java.model.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CheckoutService {
 
@@ -17,17 +19,7 @@ public class CheckoutService {
     }
 
     public int sumPrices(Item... items) {
-        int sum;
-        sum = getSpecialPrice(items);
-        for (Item item : items) {
-            if(item.getRule() != null){
-                sum = sum + (counter.get(item.getName())%item.getRule().getAmount())*scanItem(item);
-            }else{
-                sum = sum + scanItem(item);
-            }
-
-        }
-        return sum;
+        return getSpecialPrice(items) + getNormalPrice(items);
     }
 
     public HashMap<String, Integer> countItems(Item... items) {
@@ -54,8 +46,29 @@ public class CheckoutService {
         for (Item item : items) {
             if (item.getRule() != null) {
                 specialPrice = (counter.get(item.getName()) / item.getRule().getAmount()) * item.getRule().getPrice();
+            }else{
+                specialPrice = 0;
             }
         }
         return specialPrice;
+    }
+
+    public int getNormalPrice(Item... items) {
+        List<String> countItems = new ArrayList<>();
+        if (counter == null) {
+            counter = new HashMap<>();
+        }
+        counter.clear();
+        countItems(items);
+        int normalPrice = 0;
+        for (Item item : items) {
+            if (item.getRule() != null && !countItems.contains(item.getName())) {
+                normalPrice = normalPrice+(counter.get(item.getName()) % item.getRule().getAmount()) * scanItem(item);
+            }else if(item.getRule() == null){
+                normalPrice = normalPrice +scanItem(item);
+            }
+            countItems.add(item.getName());
+        }
+        return normalPrice;
     }
 }
