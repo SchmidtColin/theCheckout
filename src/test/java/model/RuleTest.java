@@ -4,27 +4,41 @@ import main.java.model.Rule;
 import org.junit.Before;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
 public class RuleTest {
 
-    private Rule rule;
+    private Rule specialRule;
 
     @Before
     public void setUp() {
-        rule = new Rule(3, 140);
+        specialRule = new Rule("A", 50, 3, 130);
     }
 
     @Test
-    public void getAndSetAmountTest() {
-        rule.setAmount(3);
-        assertEquals(3, rule.getAmount());
+    public void getItemNameTest() {
+        assertEquals("A", specialRule.getItemName());
     }
 
     @Test
-    public void getAndSetPriceTest() {
-        rule.setPrice(140);
-        assertEquals(140, rule.getPrice());
+    public void getNormalPriceTest() {
+        assertEquals(50, specialRule.getNormalPrice());
+    }
+
+    @Test
+    public void getAmountTest() {
+        assertEquals(3, specialRule.getAmount());
+    }
+
+    @Test
+    public void getSpecialPriceTest() {
+        assertEquals(130, specialRule.getSpecialPrice());
+    }
+
+    @Test
+    public void getServiceTest(){
+        assertNotNull(specialRule.getService());
     }
 
 }

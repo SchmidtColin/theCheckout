@@ -1,22 +1,25 @@
 package main.java.model;
 
-import main.java.model.enumeration.ITEM;
 
 public class Item {
 
-    private ITEM item;
     private Rule rule;
+    private String name;
+    private int price;
+    private int specialPrice;
 
-    public Item(ITEM item) {
-        this.item = item;
+    public Item(String name) {
+        this.name = name;
     }
 
-    public int getPrice() {
-        return item.getPrice();
+    public int getPrice(){
+        switch (name){
+            default : return price;
+        }
     }
 
     public String getName() {
-        return item.toString();
+        return name;
     }
 
     public void setRule(Rule rule) {
@@ -25,5 +28,17 @@ public class Item {
 
     public Rule getRule() {
         return rule;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setSpecialPrice(int specialPrice) {
+        this.specialPrice = specialPrice;
+    }
+
+    public int getSpecialPrice() {
+        return specialPrice;
     }
 }

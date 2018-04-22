@@ -18,10 +18,10 @@ public class RuleServiceTest {
 
     @Test
     public void getRuleTextTest() {
-        Rule ruleA = new Rule(3, 130);
-        Rule ruleB = new Rule(2, 45);
-        assertEquals("3 for 130", service.getRuleText(ruleA));
-        assertEquals("2 for 45", service.getRuleText(ruleB));
+        Rule ruleA = new Rule("A",50,3, 130);
+        Rule ruleB = new Rule("B",30,2, 45);
+        assertEquals("A       50               3 for 130", service.getRuleText(ruleA));
+        assertEquals("B       30               2 for 45", service.getRuleText(ruleB));
     }
 
 }
